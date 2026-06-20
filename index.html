@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuber Varieties </title>
+    <style>
+        /* CSS Reset & Variable Definitions */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-pink: #FFB7B2;
+            --dark-lotus: #D4A373;
+            --deep-green: #1A3A2B;
+            --light-bg: #FAEDCD;
+            --text-dark: #2F3E46;
+        }
+
+        body {
+            background-color: #FFFDF9;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            color: var(--primary-pink);
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-pink);
+        }
+
+        /* Hero Banner Section */
+        .hero {
+            background: linear-gradient(rgba(26, 58, 43, 0.7), rgba(26, 58, 43, 0.5)), 
+                        url('https://cdn.corenexis.com/f/V2sQrKTV1Em.png') no-repeat center center/cover;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background-color: #E29578;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #FFB7B2;
+            color: var(--deep-green);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--deep-green);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: var(--dark-lotus);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Lotus Products Grid */
+        .lotus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .lotus-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border: 1px solid #F0E6D2;
+        }
+
+        .lotus-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .lotus-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .lotus-info {
+            padding: 20px;
+        }
+
+        .lotus-info h3 {
+            color: var(--deep-green);
+            margin-bottom: 10px;
+        }
+
+        .bullet-list {
+            list-style-type: none;
+            margin-top: 10px;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .bullet-list li::before {
+            content: "🌸";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Content Info Section (Multi-language) */
+        .content-box {
+            background-color: #F7F5F0;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
+        }
+
+        .lang-block {
+            margin-bottom: 35px;
+        }
+
+        .lang-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .lang-title {
+            font-size: 22px;
+            color: #D4A373;
+            border-left: 5px solid var(--deep-green);
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Owner Details Footer */
+        .owner-details {
+            background-color: var(--deep-green);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .owner-details h3 {
+            color: var(--primary-pink);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 2000;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            background-color: #20BA5A;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; flex-direction: column; gap: 10px; }
+            .hero h2 { font-size: 32px; }
+            section { padding: 40px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">
+            <h1>Tuber Varieties</h1>
+        </div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#varieties">Lotus Varieties</a>
+            <a href="#knowledge">About Tubers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero" id="home">
+        <h2>Premium Quality Lotus Tubers</h2>
+        <p>Explore the stunning beauty of sacred and rare aquatic flower bulbs. Order active and high-yielding lotus tubers directly from our fresh nursery stock.</p>
+        <a href="https://wa.me/919749714886?text=Hi%2C%20I%20am%20interested%20in%20buying%20Lotus%20Tubers." class="btn" target="_blank">Order/Inquire Now</a>
+    </div>
+
+    <!-- Lotus Varieties Section -->
+    <section id="varieties">
+        <h2 class="section-title">Our Rare Lotus Collection</h2>
+        <div class="lotus-grid">
+
+            <!-- Yellow Lotus -->
+            <div class="lotus-card">
+                <img src="https://cdn.corenexis.com/f/05c7qOLjGbc.png" alt="Network problem/Server Slow">
+                <div class="lotus-info">
+                    <h3>Golden Yellow Lotus</h3>
+                    <p>A serene and majestic choice for sunlit large ponds or dynamic premium container setups.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Variety:</strong> Golden Sunbeam / Yellow Peony</li>
+                        <li><strong>Bloom Size:</strong> Medium to Large</li>
+                        <li><strong>Sunlight Required:</strong> 6-8 Hours daily</li>
+                        <li><strong>Tuber Health:</strong> 100% Organic & Disease Free</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Red Lotus -->
+            <div class="lotus-card">
+                <img src="https://cdn.corenexis.com/f/oKrhTb4TWsX.png" alt="Red Lotus" class="lotus-img">
+                <div class="lotus-info">
+                    <h3>Deep Crimson Red Lotus</h3>
+                    <p>Bring energy and rich traditional vibrancy to your garden setup with dark shades of red.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Variety:</strong> Red Bowl / Crimson Glow</li>
+                        <li><strong>Petal Count:</strong> Multi-petal heavy layers</li>
+                        <li><strong>Growth Style:</strong> Fast spreading runner</li>
+                        <li><strong>Ideal Pot Size:</strong> 15-24 inches wide</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- White Lotus -->
+            <div class="lotus-card">
+                <img src="https://cdn.corenexis.com/f/2UxrSTMAvfd.png" alt="White Lotus" class="lotus-img">
+                <div class="lotus-info">
+                    <h3>Pristine White Lotus</h3>
+                    <p>Symbol of ultimate purity and elegant design aesthetics. Perfectly suits calm water zones.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Variety:</strong> White Jade Elephant</li>
+                        <li><strong>Fragrance:</strong> Very sweet mild aromatic</li>
+                        <li><strong>Bloom Duration:</strong> Early morning till sunset</li>
+                        <li><strong>Best Season:</strong> Summer to Autumn blooms</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pink Lotus -->
+            <div class="lotus-card">
+                <img src="https://cdn.corenexis.com/f/1Z9kjMcUVVr.png" alt="Pink Lotus" class="lotus-img">
+                <div class="lotus-info">
+                    <h3>Classic Pink Lotus</h3>
+                    <p>The iconic botanical marvel with deep pink tips transitioning gently into glowing white centers.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Variety:</strong> Sacred Rose Lotus</li>
+                        <li><strong>Plant Size:</strong> Standard Traditional Size</li>
+                        <li><strong>Fertilizer:</strong> Heavy feeder (NPK/Organic manure)</li>
+                        <li><strong>Survival Rate:</strong> Extremely hardy, beginner-friendly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Hard Blood Lotus -->
+            <div class="lotus-card">
+                <img src="https://cdn.corenexis.com/f/3t7002FNIiW.png" alt="Hard Blood Lotus" class="lotus-img">
+                <div class="lotus-info">
+                    <h3>Hard Blood Lotus</h3>
+                    <p>Extremely dark velvet red structure, projecting supreme luxury and breathtaking dark aesthetics.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Variety:</strong> Black Warrior / Hard Blood</li>
+                        <li><strong>Petal Feature:</strong> Thick, velvet-like rich texture</li>
+                        <li><strong>Deep Water Adaptable:</strong> Yes up to 2.5 feet</li>
+                        <li><strong>Rare Status:</strong> Premium collector item</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Thousand Petal Lotus -->
+            <div class="lotus-card">
+                <img src="https://cdn.corenexis.com/f/Mf8PJ1ses18.png" alt="1000 Petal Lotus" class="lotus-img">
+                <div class="lotus-info">
+                    <h3>1000 Petal Exotic Lotus</h3>
+                    <p>An extraordinary elite masterclass variety producing countless petals over an extended bloom cycle.</p>
+                    <ul class="bullet-list">
+                        <li><strong>Variety:</strong> Ultimate Thousand Petal (Miliya)</li>
+                        <li><strong>Bud Shape:</strong> Massive cabbage-sized round bud</li>
+                        <li><strong>Care Requirement:</strong> High fertilizer dose & space</li>
+                        <li><strong>Uniqueness:</strong> Ultimate focal point for displays</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Multi-Language Informational Section (Approx 600-700 Words altogether) -->
+    <section id="knowledge">
+        <h2 class="section-title">Understanding Lotus Tubers & Cultivation</h2>
+        
+        <div class="content-box">
+            <!-- English Section -->
+            <div class="lang-block">
+                <div class="lang-title">English - The Art of Growing Lotus from Tubers</div>
+                <p>Lotus (Nelumbo nucifera) is a phenomenal aquatic plant that symbolizes grace and resilience. Unlike normal seeds, growing a lotus directly from high-quality tubers guarantees an exact genetic replica of the parent bloom with a significantly faster flowering turnaround. Tubers are specialized thickened storage stems containing nutrient reserves and prominent growth nodes called eyes.</p>
+                <p style="margin-top: 10px;">To successfully cultivate these premium tuber varieties, select a heavy, non-porous pot or container. Lotus plants prefer dense clay soil or specialized aquatic planting soil mixtures rather than standard aerated potting soil mix, which tends to float. Secure the tuber gently in the mud at a 15-degree angle, making sure the growing tips are exposed safely above the soil layer. Ensure it receives unfiltered, direct sunlight for at least 6 to 8 hours daily. Consistent tracking of water quality, temperature stability, and regular top-dress organic or NPK fertilizer feeding ensures massive, multi-petal vibrant summer blossoms.</p>
+            </div>
+
+            <!-- Bengali Section -->
+            <div class="lang-block">
+                <div class="lang-title">বাংলা - পদ্ম টিউবার প্রতিস্থাপন ও পরিচর্যা নির্দেশিকা</div>
+                <p>পদ্ম কেবল একটি ফুল নয়, এটি সৌন্দর্য এবং পবিত্রতার পরম প্রতীক। বীজ থেকে পদ্ম চাষ করার তুলনায় একটি সুস্থ ও পরিপক্ক টিউবার (Tuber) বা কন্দ থেকে গাছ তৈরি করলে খুব দ্রুত এবং নিশ্চিতভাবে ফুল পাওয়া যায়। আমাদের কাছে আপনি পাবেন উন্নত জাতের হলুদ, লাল, সাদা, গোলাপি এবং অত্যন্ত দুর্লভ থাউজ্যান্ড পেটাল বা হাজার পাপড়ির পদ্মের খাঁটি টিউবার।</p>
+                <p style="margin-top: 10px;">টিউবার রোপণের জন্য উপযুক্ত টব বা পাত্র নির্বাচন করা জরুরি। পদ্ম গাছ সাধারণত আঠালো কাদা মাটি পছন্দ করে। সাধারণ বাগানের দোআঁশ মাটিতে সামান্য গোবর সার বা ভার্মিকম্পোস্ট মিশিয়ে কাদা প্রস্তুত করুন। টিউবারের বাড়ন্ত চোখ বা অগ্রভাগটি মাটির সামান্য ওপরে রেখে অত্যন্ত আলতোভাবে ১৫ ডিগ্রি কোণে মাটিতে পুঁতে দিতে হবে। খেয়াল রাখবেন যেন টিউবারটি ভেঙে না যায়। রোপণের পর পাত্রটি এমন জায়গায় রাখুন যেখানে সারাদিনে কমপক্ষে ৬ থেকে ৮ ঘণ্টা সরাসরি কড়া রোদ পাওয়া যায়। সঠিক পুষ্টি এবং নিয়মিত জলের স্তর বজায় রাখলে আপনার ছাদবাগান বা জলাশয় অসাধারণ সব রঙিন পদ্মে ভরে উঠবে।</p>
+            </div>
+
+            <!-- Hindi Section -->
+            <div class="lang-block">
+                <div class="lang-title">हिंदी - कमल के ट्यूबर की देखभाल और रोपण विधि</div>
+                <p>कमल का पौधा हर बगीचे की शोभा बढ़ाता है। बीजों की तुलना में ट्यूबर (कंद) से कमल उगाना बेहद आसान और फायदेमंद होता है क्योंकि इसमें फूल आने की संभावना शत-प्रतिशत और बहुत जल्दी होती है। ट्यूबर असल में पौधे का वह मुख्य भाग है जिसमें सारे पोषक तत्व जमा होते हैं।</p>
+                <p style="margin-top: 10px;">कमल के ट्यूबर को लगाने के लिए एक गहरे और चौड़े बिना छेद वाले गमले का चुनाव करें। इसके लिए सबसे अच्छी चिकनी या तालाब की काली मिट्टी मानी जाती है। मिट्टी में ट्यूबर को लगाते समय उसके बढ़ते हुए छोर (Growth Node) को ऊपर की तरफ खुला रखें और बाकी हिस्से को मिट्टी से दबा दें। गमले में धीरे-धीरे पानी भरें ताकि मिट्टी पूरी तरह बैठ जाए। कमल को बढ़ने के लिए रोजाना कम से कम 6 से 8 घंटे की सीधी धूप की सख्त आवश्यकता होती है। समय-समय पर पुरानी सड़ी पत्तियों को हटाते रहें और जैविक खाद का उपयोग करें ताकि आपके ट्यूबर स्वस्थ रहें और प्रचुर मात्रा में कलियां दे सकें।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Contact and Ownership -->
+    <footer class="owner-details" id="contact">
+        <h3>Tuber Varieties</h3>
+        <p>Your Trusted Partner for Authentic Aquatic Beauty</p>
+        <p style="margin: 15px 0; font-size: 18px; font-weight: bold; color: #FFF;">Proprietor: Pritam Ghosh</p>
+        <p style="font-size: 14px; opacity: 0.8;">&copy; 2026 Tuber Varieties. All Rights Reserved.</p>
+    </footer>
+
+    <!-- WhatsApp Floating Action Button -->
+    <a href="https://wa.me/919749714886?text=Hi%20Pritam%20Ghosh%2C%20I%20visited%20Tuber%20Varieties%20and%20want%20to%20buy%20lotus%20tubers." class="whatsapp-float" target="_blank">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.244 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.455L0 24zm6.59-4.846c1.66.986 3.288 1.479 5.362 1.48 5.417 0 9.823-4.38 9.826-9.761a9.664 9.664 0 0 0-2.856-6.88A9.713 9.713 0 0 0 12.01 1.47c-5.42 0-9.828 4.384-9.831 9.762-.001 2.146.574 3.819 1.662 5.351l-.97 3.548 3.638-.949zM17.02 14.5c-.274-.138-1.62-.8-1.874-.893-.253-.093-.438-.138-.623.139-.184.277-.714.893-.875 1.077-.162.184-.323.208-.597.07a7.512 7.512 0 0 1-2.215-1.366 8.306 8.306 0 0 1-1.533-1.91c-.162-.277-.017-.427.121-.565.125-.124.274-.323.411-.485.139-.161.184-.277.277-.461.093-.185.046-.347-.023-.485-.069-.138-.623-1.501-.853-2.056-.225-.541-.453-.467-.623-.476-.161-.008-.346-.01-.53-.01-.185 0-.485.07-.739.347-.254.277-.97.948-.97 2.313 0 1.365.993 2.68 1.115 2.842.123.162 1.954 2.984 4.734 4.183.661.285 1.177.455 1.58.583.664.211 1.269.181 1.747.11.533-.08 1.62-.663 1.85-1.302.23-.64.23-1.186.162-1.302-.07-.115-.254-.184-.528-.322z"/>
+        </svg>
+        WhatsApp Order
+    </a>
+
+</body>
+</html>
